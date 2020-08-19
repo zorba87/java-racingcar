@@ -6,6 +6,7 @@ import step5.model.Winners;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ResultView {
     private ResultView(){
@@ -37,11 +38,8 @@ public class ResultView {
     }
 
     public static String createWinnerNames(List<Car> winners) {
-        List<String> winnerNames = new ArrayList<>();
-
-        for (Car winner : winners) {
-            winnerNames.add(winner.getName());
-        }
-        return String.join(",",winnerNames);
+        return winners.stream()
+                        .map(Car::getName)
+                        .collect(Collectors.joining(","));
     }
 }
